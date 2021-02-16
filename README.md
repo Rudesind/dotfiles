@@ -33,12 +33,23 @@ I maintain specific configurations for the following software:
 * [Xmobar](https://hackage.haskell.org/package/xmobar)
 * [Xmonad](https://xmonad.org/)
 
-## Use
+## How I Manage my Dotfiles
 
-Clone the dotfiles down to your machine:
+I maintain my dotfiles using the **git bare repository method**. This was inspired by **DistroTube**.
+For creating you're own dotfiles using this method, see: https://www.atlassian.com/git/tutorials/dotfiles
 
-```git
+## Usage
+
+To use my dotfiles, clone the files down to any location on your machine:
+
+```
 git clone https://github.com/Rudesind/dotfiles.git
 ```
 
-From here you can either copy the files out of the repository into your own dotfiles repository, copy the files directly to their respective config locations, or create symbolic links directly from the repository.
+Once cloned, copy and replace any files on your system with the files cloned. Assuming you're managing your own dotfiles through git, you would then add the new files to your repository:
+
+```
+config add <dotfile>
+```
+
+After you've taken all the files you want, you can delete the cloned repository, or keep for later updates.

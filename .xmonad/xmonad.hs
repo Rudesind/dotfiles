@@ -403,6 +403,7 @@ myLogHook h k = dynamicLogWithPP $ def
 myStartupHook = do
 	spawnOnce "nitrogen --restore &"
 	spawnOnce "picom &"
+	spawnOnce "xautolock -time 15 -locker slock &"
 
 ------------------------------------------------------------------------
 -- MAIN

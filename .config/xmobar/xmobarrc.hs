@@ -17,7 +17,7 @@ Config {
    
     , sepChar =  "%"   -- delineator between plugin names and straight text
     , alignSep = "}{"  -- separator between left-right alignment
-    , template = " <action=`gnome-control-center`><icon=haskell_20.xpm/></action> | %StdinReader% }{ %disku% | %multicpu% | %memory% | %battery% | <action=`gnome-calendar`>%date%</action> "
+    , template = " <action=`gnome-control-center`><icon=mylogo.xpm/></action> | %StdinReader% }{ %disku% | %multicpu% | %memory% | %battery% | <action=`gnome-calendar`>%date%</action> "
    
     , lowerOnStart =     True                    -- Send to bottom of window stack on start
     , hideOnStart =      False                   -- Start with window unmapped (hidden)

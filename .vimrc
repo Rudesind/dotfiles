@@ -70,7 +70,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 
 " Documentation
 "
-" Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 
 " Git
 "
@@ -93,6 +93,10 @@ set nocompatible
 " Turn on plugins (instructed via instant-markdown.vim)
 "
 filetype plugin on
+
+" Change vimwiki location
+"
+let g:vimwiki_list = [{'path': '~/mywiki'}]
 
 " Help files key map
 "

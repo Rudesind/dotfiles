@@ -17,7 +17,7 @@ Config {
    
     , sepChar =  "%"   -- delineator between plugin names and straight text
     , alignSep = "}{"  -- separator between left-right alignment
-    , template = " <action=`gnome-control-center`><icon=mylogo.xpm/></action> | %StdinReader% }{ %disku% | %multicpu% | %memory% | %battery% | <action=`gnome-calendar`>%date%</action> "
+    , template = " <action=`gnome-control-center`><icon=mylogo.xpm/></action> | %StdinReader% }{ %disku% | %multicpu% | %memory% | %battery% | <fc=#fbf1c7>%pacupdate%</fc> | <action=`gnome-calendar`>%date%</action> "
    
     , lowerOnStart =     True                    -- Send to bottom of window stack on start
     , hideOnStart =      False                   -- Start with window unmapped (hidden)
@@ -69,6 +69,9 @@ Config {
                             ] 50
         -- Workspaces
         , Run StdinReader
+
+        -- Pacman Updates
+        , Run Com "/home/zn/.local/bin/pacupdates" [] "pacupdate" 36000
 
         -- Date
         , Run Date          "<fc=#fbf1c7>%F (%a) %T</fc>" "date" 10

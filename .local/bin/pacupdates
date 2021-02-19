@@ -1,0 +1,4 @@
+#!/bin/bash
+
+pakUpdates=$(pacman -Qu | wc -l)
+echo "$pakUpdates updates "

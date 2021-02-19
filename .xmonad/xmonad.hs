@@ -241,6 +241,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_x     ), xmonadPrompt znXPConfig)              -- Custom xmonadPrompt keymap
     , ((modm .|. controlMask, xK_p     ), shellPrompt znXPConfig)               -- Custom xmonadPrompt keymap
     , ((modm .|. controlMask, xK_l     ), spawn "slock")                        -- Custom xmonadPrompt keymap
+    , ((modm .|. controlMask, xK_j     ), nextScreen)                           -- Move focus to next screen
+    , ((modm .|. controlMask, xK_k     ), prevScreen)                           -- Move focus to previous screen
 
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.

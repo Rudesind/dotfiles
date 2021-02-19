@@ -1,6 +1,4 @@
-------------------------------------------------------------------------
--- IMPORTS
-------------------------------------------------------------------------
+-- Imports
 
 -- Base
 import XMonad
@@ -51,9 +49,7 @@ import XMonad.Prompt.Ssh
 import XMonad.Prompt.XMonad
 import Control.Arrow (first)
 
-------------------------------------------------------------------------
--- CONFIG
-------------------------------------------------------------------------
+-- My Config
 
 myFont :: String
 myFont = "xft:Ubuntu Mono:size=12:antialias=true:hinting=true"
@@ -65,13 +61,13 @@ myModMask :: KeyMask
 myModMask = mod4Mask                -- "Mod" key is set to super or windows key
 
 myBrowser :: String
-myBrowser = "qutebrowser "          -- Sets browser for tree select
+myBrowser = "brave"                 -- My default browser
 
 myEditor :: String
 myEditor = "vim"                    -- Sets editor for tree select
 
 myBorderWidth :: Dimension
-myBorderWidth = 2                   -- Side of border around windows
+myBorderWidth = 2                   -- Size of border around windows
 
 myNormalBorderColor :: String
 myNormalBorderColor  = "#504945"    -- Border color for non-focused windows
@@ -83,7 +79,7 @@ altMask :: KeyMask
 altMask = mod1Mask                  -- Used for xprompts
 
 mySpacing :: Int
-mySpacing = 10
+mySpacing = 10                      -- My preferred spacing between windows
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True          -- Whether focus follows the mouse pointer.
@@ -91,24 +87,12 @@ myFocusFollowsMouse = True          -- Whether focus follows the mouse pointer.
 myClickJustFocuses :: Bool
 myClickJustFocuses = False          -- Whether clicking on a window to focus also passes the click to the window
 
-------------------------------------------------------------------------
--- WORKSPACES
-------------------------------------------------------------------------
-
--- The default number of workspaces (virtual screens) and their names.
--- By default we use numeric strings, but any string may be used as a
--- workspace name. The number of workspaces is determined by the length
--- of this list.
---
--- A tagging example:
---
--- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
+-- Workspace Example:
+-- workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
 myWorkspaces    = ["main","web","code","prod","test","dev"] 
 
-------------------------------------------------------------------------
--- XPROMPT
-------------------------------------------------------------------------
+-- XPrompt Config
 
 znXPConfig :: XPConfig
 znXPConfig = def
@@ -121,18 +105,14 @@ znXPConfig = def
       , promptBorderWidth   = 0
       , promptKeymap        = znXPKeymap
       , position            = Top
-      -- , position            = CenteredAt { xpCenterY = 0.3, xpWidth = 0.3 }
       , height              = 23
       , historySize         = 256
       , historyFilter       = id
       , defaultText         = []
       , autoComplete        = Just 100000  -- set Just 100000 for .1 sec
       , showCompletionOnTab = False
-      -- , searchPredicate     = isPrefixOf
       , searchPredicate     = fuzzyMatch
       , defaultPrompter     = id $ map toUpper  -- change prompt to UPPER
-      -- , defaultPrompter     = unwords . map reverse . words  -- reverse the prompt
-      -- , defaultPrompter     = drop 5 .id (++ "XXXX: ")  -- drop first 5 chars of prompt and add XXXX:
       , alwaysHighlight     = True
       , maxComplRows        = Nothing      -- set to 'Just 5' for 5 rows
       }
@@ -144,9 +124,7 @@ znXPConfig' = znXPConfig
       { autoComplete        = Nothing
       }
 
-------------------------------------------------------------------------
--- XPROMPT KEYMAP
-------------------------------------------------------------------------
+-- XPrompt Keymap
 
 znXPKeymap :: M.Map (KeyMask,KeySym) (XP ())
 znXPKeymap = M.fromList $
@@ -187,15 +165,18 @@ znXPKeymap = M.fromList $
      , (xK_Escape, quit)
      ]
 
-------------------------------------------------------------------------
--- SEARCH ENGINES
-------------------------------------------------------------------------
+-- Search Engines
 
 archwiki :: S.SearchEngine
-
 archwiki = S.searchEngine "Arch Wiki" "https://wiki.archlinux.org/index.php?search="
+
+stack :: S.SearchEngine
 stack = S.searchEngine "StackOverflow" "https://stackoverflow.com/search?q="
+
+sndev :: S.SearchEngine
 sndev = S.searchEngine "ServiceNow Developer" "https://developer.servicenow.com/dev.do#!/search/quebec/Reference/"
+
+sncomm :: S.SearchEngine
 sncomm = S.searchEngine "ServiceNow Community" "https://community.servicenow.com/community?id=community_search&q="
 
 -- List of search engines to use.
@@ -210,19 +191,14 @@ searchList =    [ (xK_a, archwiki)
                 , (xK_z, S.amazon)
                 ]
 
-------------------------------------------------------------------------
--- KEY BINDINGS
-------------------------------------------------------------------------
+-- Key Bindings
 
--- Key bindings. Add, modify or remove key bindings here.
--- TODO: Change key maping to "easy" style. See XMonad.Util.EZConfig
---
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
-    [ ((modm .|. shiftMask  , xK_Return), spawn $ XMonad.terminal conf)         -- launch a terminal
-    , ((modm,                 xK_p     ), spawn "dmenu_run")                    -- launch dmenu
-    , ((modm .|. shiftMask  , xK_p     ), spawn "gmrun")                        -- launch gmrun
-    , ((modm .|. shiftMask  , xK_c     ), kill)                                 -- close focused window
+    [ ((modm .|. shiftMask  , xK_Return), spawn $ XMonad.terminal conf)         -- Launch a terminal
+    , ((modm,                 xK_p     ), spawn "dmenu_run")                    -- Launch dmenu
+    , ((modm .|. shiftMask  , xK_p     ), spawn "gmrun")                        -- Launch gmrun
+    , ((modm .|. shiftMask  , xK_c     ), kill)                                 -- Close focused window
     , ((modm,                 xK_space ), sendMessage NextLayout)               -- Rotate through the available layout algorithms
     , ((modm .|. shiftMask  , xK_space ), setLayout $ XMonad.layoutHook conf)   -- Reset the layouts on the current workspace to default
     , ((modm,                 xK_n     ), refresh)                              -- Resize viewed windows to the correct size
@@ -238,9 +214,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,                 xK_t     ), withFocused $ windows . W.sink)       -- Push window back into tiling
     , ((modm                , xK_comma ), sendMessage (IncMasterN 1))           -- Increment the number of windows in the master area
     , ((modm                , xK_period), sendMessage (IncMasterN (-1)))        -- Deincrement the number of windows in the master area
-    , ((modm .|. controlMask, xK_x     ), xmonadPrompt znXPConfig)              -- Custom xmonadPrompt keymap
-    , ((modm .|. controlMask, xK_p     ), shellPrompt znXPConfig)               -- Custom xmonadPrompt keymap
-    , ((modm .|. controlMask, xK_l     ), spawn "slock")                        -- Custom xmonadPrompt keymap
+    , ((modm .|. controlMask, xK_x     ), xmonadPrompt znXPConfig)              -- Launch xmonadPrompt
+    , ((modm .|. controlMask, xK_p     ), shellPrompt znXPConfig)               -- Launch shellPrompt. Can replace 'demnu'
+    , ((modm .|. controlMask, xK_l     ), spawn "slock")                        -- Start 'slock.' Locks the current screen
     , ((modm .|. controlMask, xK_j     ), nextScreen)                           -- Move focus to next screen
     , ((modm .|. controlMask, xK_k     ), prevScreen)                           -- Move focus to previous screen
 
@@ -275,18 +251,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
     ++
 
-    -- Search engine prompt
-    -- TODO: Change to modm-s
+    -- Run search engine prompt
     --
     [((modm .|. controlMask, k), S.promptSearch znXPConfig' f) 
         | (k, f) <- searchList ]
 
-------------------------------------------------------------------------
--- MOUSE BINDINGS
-------------------------------------------------------------------------
+-- Mouse Bindings
 
--- Mouse bindings: default actions bound to mouse events
---
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- mod-button1, Set the window to floating mode and move by dragging
@@ -303,18 +274,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
-------------------------------------------------------------------------
--- LAYOUTS
-------------------------------------------------------------------------
-
--- You can specify and transform your layouts by modifying these values.
--- If you change layout bindings be sure to use 'mod-shift-space' after
--- restarting (with 'mod-q') to reset your layout state to the new
--- defaults, as xmonad preserves your old layout settings by default.
---
--- The available layouts.  Note that each layout is separated by |||,
--- which denotes layout choice.
---
+-- Layouts
 
 --myLayout = avoidStruts (renamed [Replace "tall"] tiled ||| renamed [Replace "full"] Full)
 myLayout = avoidStruts (tiled ||| Full)
@@ -333,91 +293,51 @@ myLayout = avoidStruts (tiled ||| Full)
 
 -- showWName theme
 myShowWNameTheme = def
-	{ swn_font	= "xft:Ubuntu:bold:size=60"
-	, swn_fade	= 1.0
-	, swn_bgcolor	= "#1c1f24"
-	, swn_color	= "#ffffff"
-	}
+        { swn_font      = "xft:Ubuntu:bold:size=60"
+        , swn_fade      = 1.0
+        , swn_bgcolor   = "#1c1f24"
+        , swn_color     = "#ffffff"
+        }
 
-------------------------------------------------------------------------
--- WINDOW RULES
-------------------------------------------------------------------------
+-- Window Rules
 
--- Execute arbitrary actions and WindowSet manipulations when managing
--- a new window. You can use this to, for example, always float a
--- particular program, or have a client always appear on a particular
--- workspace.
---
--- To find the property name associated with a program, use
--- > xprop | grep WM_CLASS
--- and click on the client you're interested in.
---
--- To match on the WM_NAME, you can use 'title' in the same way that
--- 'className' and 'resource' are used below.
---
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 
-------------------------------------------------------------------------
--- EVENT HANDLING
-------------------------------------------------------------------------
+-- Event Handling
 
--- * EwmhDesktops users should change this to ewmhDesktopsEventHook
---
--- Defines a custom handler function for X Events. The function should
--- return (All True) if the default handler is to be run afterwards. To
--- combine event hooks use mappend or mconcat from Data.Monoid.
---
 myEventHook = mempty
 
-------------------------------------------------------------------------
--- STATUS BARS AND LOGGING
-------------------------------------------------------------------------
+-- Status Bars and Logging
 
--- Perform an arbitrary action on each internal state change or X event.
--- See the 'XMonad.Hooks.DynamicLog' extension for examples.
---
--- myLogHook = return ()
 myLogHook h k = dynamicLogWithPP $ def
-	{ ppOutput = \x -> hPutStrLn h x >> hPutStrLn k x
-        , ppCurrent = xmobarColor "#d65d0e" "" . wrap "[" "]" -- Current workspace in xmobar
-	, ppVisible = xmobarColor "#fabd2f" ""                -- Visible but not current workspace
-	, ppHidden = xmobarColor "#458588" "" . wrap "*" ""   -- Hidden workspaces in xmobar
-	, ppHiddenNoWindows = xmobarColor "#b16286" ""        -- Hidden workspaces (no windows)
-	, ppTitle = xmobarColor "#fbf1c7" "" . shorten 60     -- Title of active window in xmobar
-	, ppSep =  " | "          			      -- Separators in xmobar
-	, ppUrgent = xmobarColor "#cc241d" "" . wrap "!" "!"  -- Urgent workspace
-	, ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]	      -- Order of items displayed.
-	}
+        { ppOutput = \x -> hPutStrLn h x >> hPutStrLn k x     -- Output workspaces to xmobar
+        , ppCurrent = xmobarColor "#d65d0e" "" . wrap "[" "]" -- Active workspace in xmobar
+        , ppVisible = xmobarColor "#fabd2f" ""                -- On screen, but not active workspace
+        , ppHidden = xmobarColor "#458588" "" . wrap "*" ""   -- Not active/on screen, but has open windows
+        , ppHiddenNoWindows = xmobarColor "#b16286" ""        -- Not active/on screen and has no open windows
+        , ppTitle = xmobarColor "#fbf1c7" "" . shorten 60     -- Title of active window in xmobar
+        , ppSep =  " | "          			      -- Separators in xmobar
+        , ppUrgent = xmobarColor "#cc241d" "" . wrap "!" "!"  -- Urgent workspace
+        , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]	      -- Order of items displayed.
+        }
 
-------------------------------------------------------------------------
--- STARTUP HOOK
-------------------------------------------------------------------------
+-- Startup Hook
 
--- Perform an arbitrary action each time xmonad starts or is restarted
--- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
--- per-workspace layout choices.
---
--- By default, do nothing.
 myStartupHook = do
-	spawnOnce "nitrogen --restore &"
-	spawnOnce "picom &"
-	spawnOnce "xautolock -time 15 -locker slock &"
+        spawnOnce "nitrogen --restore &"                -- Start nitrogen
+        spawnOnce "picom &"                             -- Start picom
+        spawnOnce "xautolock -time 15 -locker slock &"  -- Autolock after 15 minutes
 
-------------------------------------------------------------------------
--- MAIN
-------------------------------------------------------------------------
-
--- Now run xmonad with all the defaults we set up. Not using the 
--- the "defaults" variable so I can modify "logHook."
+-- Main
 
 main = do
 
-    xmproc0 <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobarrc.hs"
-    xmproc1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/xmobarrc.hs"
+    xmproc0 <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobarrc.hs" -- Pass config to xmobar for monitor 0
+    xmproc1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/xmobarrc.hs" -- Pass config to xmobar for monitor 1 
     xmonad $ docks $ def {
 
     -- Config
@@ -442,11 +362,8 @@ main = do
         startupHook        = myStartupHook
     } --`additionalKeysP` myKeys
 
-------------------------------------------------------------------------
--- HELP
-------------------------------------------------------------------------
+-- Help
 
--- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
 help = unlines ["The default modifier key is 'alt'. Default keybindings:",
     "",

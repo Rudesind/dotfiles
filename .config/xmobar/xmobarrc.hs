@@ -17,7 +17,7 @@ Config {
    
     , sepChar =  "%"   -- delineator between plugin names and straight text
     , alignSep = "}{"  -- separator between left-right alignment
-    , template = " <action=`gnome-control-center`><icon=mylogo.xpm/></action> | %StdinReader% }{ %disku% | %multicpu% | %memory% | %battery% | <fc=#fbf1c7>%pacupdate%</fc> | <action=`gnome-calendar`>%date%</action> "
+    , template = " <action=`gnome-control-center`><icon=mylogo.xpm/></action> | %StdinReader% }{ <icon=hdd.xpm/> %disku% | %multicpu% | %memory% | %battery% | <fc=#fbf1c7>%pacupdate%</fc> | <action=`gnome-calendar`>%date%</action> "
    
     , lowerOnStart =     True                    -- Send to bottom of window stack on start
     , hideOnStart =      False                   -- Start with window unmapped (hidden)
@@ -29,7 +29,7 @@ Config {
     , commands = 
 
         -- CPU Activity Monitor
-        [ Run DiskU         [("/", "<fc=#fbf1c7>hdd:<used>/<size></fc>")][] 20
+        [ Run DiskU         [("/", "<fc=#fbf1c7><used>/<size></fc>")][] 20
 
         , Run MultiCpu      [ "--template"  , "<ipat> <total><fc=#fbf1c7>%</fc>"
                             , "--Low"       , "50"      -- units: %

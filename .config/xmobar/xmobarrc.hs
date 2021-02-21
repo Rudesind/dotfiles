@@ -17,7 +17,7 @@ Config {
    
     , sepChar =  "%"   -- delineator between plugin names and straight text
     , alignSep = "}{"  -- separator between left-right alignment
-    , template = " <action=`gnome-control-center`><icon=mylogo.xpm/></action> | %StdinReader% }{ <icon=hdd.xpm/> %disku% | %multicpu% | %memory% | %battery% | <fc=#fbf1c7>%pacupdate%</fc> | <action=`gnome-calendar`>%date%</action> "
+    , template = " <action=`gnome-control-center`><icon=mylogo.xpm/></action> | %StdinReader% }{ <icon=arch_linux_icon.xpm/><fc=#fbf1c7>%uname%</fc> | <icon=hdd.xpm/> %disku% | %multicpu% | %memory% | <fc=#fbf1c7>%pacupdate%</fc> | <action=`gnome-calendar`>%date%</action> "
    
     , lowerOnStart =     True                    -- Send to bottom of window stack on start
     , hideOnStart =      False                   -- Start with window unmapped (hidden)
@@ -53,27 +53,31 @@ Config {
                             ] 10
 
         -- Battery Monitor
-        , Run Battery       [ "--template"  , "<leftipat> <acstatus>"
-                            , "--Low"       , "30"      -- units: %
-                            , "--High"      , "80"      -- units: %
-                            , "--low"       , "#cc241d"
-                            , "--normal"    , "#b8bb26"
-                            , "--high"      , "#98971a"
-                            , "--" 
-                                , "--on-icon-pattern"   , "<icon=battery/on/battery_on_%%.xpm/>"
-                                , "--off-icon-pattern"  , "<icon=battery/off/battery_off_%%.xpm/>"
-                                , "--idle-icon-pattern" , "<icon=battery/idle/battery_idle_%%.xpm/>"
-                                , "-o"  , "<left><fc=#fbf1c7>%</fc>" -- Battery in use
-                                , "-O"  , "<left><fc=#fbf1c7>%</fc>" -- Battery charging
-                                , "-i"  , "<fc=#928374>IDLE</fc>"    -- Battery charged and idle
-                            ] 50
+--        , Run Battery       [ "--template"  , "<leftipat> <acstatus>"
+--                            , "--Low"       , "30"      -- units: %
+--                            , "--High"      , "80"      -- units: %
+--                            , "--low"       , "#cc241d"
+--                            , "--normal"    , "#b8bb26"
+--                            , "--high"      , "#98971a"
+--                            , "--" 
+--                                , "--on-icon-pattern"   , "<icon=battery/on/battery_on_%%.xpm/>"
+--                                , "--off-icon-pattern"  , "<icon=battery/off/battery_off_%%.xpm/>"
+--                                , "--idle-icon-pattern" , "<icon=battery/idle/battery_idle_%%.xpm/>"
+--                                , "-o"  , "<left><fc=#fbf1c7>%</fc>" -- Battery in use
+--                                , "-O"  , "<left><fc=#fbf1c7>%</fc>" -- Battery charging
+--                                , "-i"  , "<fc=#928374>IDLE</fc>"    -- Battery charged and idle
+--                            ] 50
         -- Workspaces
         , Run StdinReader
 
         -- Pacman Updates
-        , Run Com "/home/zn/.local/bin/pacupdates" [] "pacupdate" 36000
+        -- Displays "N/A" if command had error
+        , Run ComX "/home/zn/.local/bin/pacupdates" [] "N/A" "pacupdate" 36000
+        
+        -- Gets the kernel version. Standard shell command
+        , Run Com "uname" ["-r"] "" 3600
 
         -- Date
-        , Run Date          "<fc=#fbf1c7>%F (%a) %T</fc>" "date" 10
+        , Run Date          "<fc=#fbf1c7>%A | %d | %H:%M </fc>" "date" 10
     ] 
 }

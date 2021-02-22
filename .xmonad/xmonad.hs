@@ -87,10 +87,12 @@ myFocusFollowsMouse = True          -- Whether focus follows the mouse pointer.
 myClickJustFocuses :: Bool
 myClickJustFocuses = False          -- Whether clicking on a window to focus also passes the click to the window
 
+
+-- My Workspaces
 -- Workspace Example:
 -- workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["main","web","code","prod","test","dev"] 
+myWorkspaces    = ["main","web","code","notes","music"]
 
 -- XPrompt Config
 

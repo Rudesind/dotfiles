@@ -72,12 +72,12 @@ Config {
 
         -- Pacman Updates
         -- Displays "N/A" if command had error
-        , Run ComX "/home/zn/.local/bin/pacupdates" [] "N/A" "pacupdate" 36000
+        , Run ComX          "/home/zn/.local/bin/pacupdates" [] "N/A" "pacupdate" 36000
         
         -- Gets the kernel version. Standard shell command
-        , Run Com "uname" ["-r"] "" 3600
+        , Run Com           "uname" ["-r"] "" 3600
 
         -- Date
-        , Run Date          "<fc=#fbf1c7>%A | %d | %H:%M </fc>" "date" 10
+        , Run Date          "<fc=#fbf1c7>%A | %m.%d | %H:%M </fc>" "date" 10
     ] 
 }

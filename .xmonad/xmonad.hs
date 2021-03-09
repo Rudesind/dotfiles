@@ -347,6 +347,7 @@ myStartupHook = do
         spawnOnce "nitrogen --restore &"                -- Start nitrogen
         spawnOnce "picom &"                             -- Start picom
         spawnOnce "xautolock -time 15 -locker slock &"  -- Autolock after 15 minutes
+        spawnOnce "colctl --mode coveringmarquee --text_color 255,0,255 --color0 255,0,255 --color1 1,1,1 --color_count 2 --animation_speed 2"      -- Set color of NZXT Kraken
 
 -- Main
 

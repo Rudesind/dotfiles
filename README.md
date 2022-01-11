@@ -30,6 +30,7 @@ I maintain specific configurations for the following software:
 * [Starship](https://starship.rs/)
 * [Vim](https://www.vim.org/)
 * [Vifm](https://vifm.info/)
+* [Windows Terminal](https://github.com/microsoft/terminal)
 * [Xmobar](https://hackage.haskell.org/package/xmobar)
 * [Xmonad](https://xmonad.org/)
 

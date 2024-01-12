@@ -3,3 +3,5 @@
 	name = Rudesind
 [core]
 	editor = vim
+[http]
+	sslbackend = schannel

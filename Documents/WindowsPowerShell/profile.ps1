@@ -1,3 +1,15 @@
+################################################################################
+#  ___  ________  __________  ________   ___
+# |   \ \       \ \        / /       / /   |
+# |    \ \       \ \      / /_______/ /    |
+# |     \ \       \ \    / ________  /     |
+# |      \ \       \ \  / /       / /      |
+# |_______\ \_______\ \/ /_______/ /_______|
+#
+# my config.
+################################################################################
+
+
 # Set the location of the terminal to root
 #
 set-location $home > $null
@@ -13,14 +25,6 @@ if (Test-Path($ChocolateyProfile)) {
     Import-Module "$ChocolateyProfile"
 }
 
-# Set Aliases
-#
-
-# Shows hidden and system files on ls command
-#
-Function listDir {Get-ChildItem -Force}
-Set-Alias -Name ls -Value listDir -Option AllScope
-
 # Quick way to get out of the current directory
 #
 New-Alias -Name .. -Value cd..
@@ -35,18 +39,31 @@ New-Alias -Name op -Value openEx
 function openHome {cd ~/}
 New-Alias -Name home -Value openHome
 
-# Dotfiles config function
+# Create symbolic link
+#
+function createLink {param($link,$target) ni -p $link -it symboliclink -v $target}
+New-Alias -Name ln -Value createLink
+
+# Tries to emulate "sudo"
+#
+function runAsAdmin {param($arg) Start-Process -Verb RunAs powershell.exe -Args $arg}
+New-Alias -Name sudo -value runAsAdmin
+
+# PowerShell Profile
+# Windows Environment Only
+#
+$myProfile = "C:\Users\a1060303\OneDrive - Alight Solutions\Documents\WindowsPowerShell\profile.ps1"
+
+# Windows Terminal Settings
+# Windows Environment Only
+#
+$termSettings = "C:\Users\a1060303\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+
+# Function for managing bare bones config
 #
 function gitConfig {git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $args}
 New-Alias -Name config -Value gitConfig
 
-# Path variables
-#
-
 # Start shell prompt
 #
 Invoke-Expression (&starship init powershell)
-
-# Clear the PowerShell starting information
-#
-#Clear-Host

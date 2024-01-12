@@ -5,3 +5,5 @@
 	editor = vim
 [http]
 	sslbackend = schannel
+[credential]
+	helper = manager

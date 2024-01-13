@@ -52,12 +52,12 @@ New-Alias -Name sudo -value runAsAdmin
 # PowerShell Profile
 # Windows Environment Only
 #
-$myProfile = "C:\Users\a1060303\OneDrive - Alight Solutions\Documents\WindowsPowerShell\profile.ps1"
+$myProfile = "$HOME/Documents/WindowsPowerShell/profile.ps1"
 
 # Windows Terminal Settings
 # Windows Environment Only
 #
-$termSettings = "C:\Users\a1060303\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+$termSettings = "$HOME/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
 
 # Function for managing bare bones config
 #

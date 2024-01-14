@@ -1,3 +1,6 @@
+-- Todo: Add logo to header of dashboard
+-- Todo: Configure Dashboard to use the telescope plugin
+-- Todo: Use the "doom" theme
 return {
 
         {   
@@ -12,13 +15,11 @@ return {
             event = 'VimEnter',
             config = function()
             require('dashboard').setup {
-                --Dashboard config goes here....
                 
                 -- Doom theme is used for the dashboard.
                 theme = 'hyper',
                 config = {
 
-                    -- Displays the current day in the dashboard.
                     week_header = {
                         enable = true,
                     },
@@ -26,9 +27,19 @@ return {
                     -- Configuration used for the 'doom' theme.
                     center = {
                         {
-                            desc = 'God dag.',
+                            icon = ' ',
+                            icon_hl = 'Title',
+                            desc = 'Find File',
+                            desc_hl = 'String',
+                            key = 'b',
+                            keymap = 'SPC f f',
+                            key_hl = 'Number',
+                            action = 'lua print(2)',
                         },
                     },
+
+                    footer = {'[ Something clever goes here ]'},
+
                 },
             }
             end,

@@ -59,6 +59,9 @@ $myProfile = "$HOME/Documents/WindowsPowerShell/profile.ps1"
 #
 $termSettings = "$HOME/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
 
+# Startup folder
+$startup = "$HOME/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup"
+
 # Function for managing bare bones config
 #
 function gitConfig {git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $args}

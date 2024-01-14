@@ -1,6 +1,13 @@
 return {
-        { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
-        {
+
+        {   
+            'ellisonleao/gruvbox.nvim',
+            priority = 1000 , 
+            config = true, 
+            opts = ...
+        },
+
+        {   
             'nvimdev/dashboard-nvim',
             event = 'VimEnter',
             config = function()
@@ -25,7 +32,16 @@ return {
                 },
             }
             end,
-            dependencies = { {'nvim-tree/nvim-web-devicons'}}
+            dependencies = {{'nvim-tree/nvim-web-devicons'}}
         },
-        {"nvim-lua/plenary.nvim"},
+
+        {
+            'nvim-lua/plenary.nvim'
+        },
+
+        {   
+            'nvim-telescope/telescope.nvim', 
+            branch = '0.1.x',
+            dependencies = {'nvim-lua/plenary.nvim'}
+        },
 }

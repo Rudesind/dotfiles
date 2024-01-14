@@ -28,15 +28,15 @@ In these instances, I create an entirely separate branch for managing dotfiles o
 ***
 I maintain specific configurations for the following software:
 
-- [Alacritty](https://alacritty.org/)
-- [Fish](https://fishshell.com/)
+- [AutoHotKey](https://www.autohotkey.com/)
 - [Git](https://git-scm.com/)
+- [Komorebi](https://github.com/LGUG2Z/komorebi)
 - [Neovim](https://neovim.io/)
 - [Starship](https://starship.rs/)
-- [Vifm](https://vifm.info/)
 - [Vim](https://www.vim.org/)
-- [Xmobar](https://github.com/jaor/xmobar)
-- [Xmonad](https://xmonad.org/)
+- [Windows PowerShell](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/powershell)
+- [Windows Terminal](https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-US&gl=US)
+- [whkd](https://github.com/LGUG2Z/whkd)
 
 > [!tip]
 > Looking for my **Windows** configuration? Switch branchs to the `windows` branch.

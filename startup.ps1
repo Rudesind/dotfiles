@@ -2,4 +2,4 @@
 
 # Start komorebic and whkd
 #
-komorebic start -c "$Env:USERPROFILE\komorebi.json" --whkd
+komorebic start -c "$Env:USERPROFILE\komorebi.json"

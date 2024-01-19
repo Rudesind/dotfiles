@@ -23,7 +23,6 @@ local cmd = vim.cmd
 -- Enables 24-bit RGB color in the terminal
 o.termguicolors = true
 o.background = "dark"
-cmd([[colorscheme gruvbox]])
 
 -- Syntax Concealing
 o.conceallevel = 2

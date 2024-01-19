@@ -80,3 +80,7 @@ o.hlsearch = true
 
 -- Enable mouse support for all (previous) modes
 opt.mouse = "a"
+
+-- Remap the leader key to space
+g.mapleader = " "
+g.maplocalleader = " "

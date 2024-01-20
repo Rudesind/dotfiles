@@ -60,7 +60,7 @@ myEditor := "neovide" ; My default editor
 !k::Focus("up")
 !l::Focus("right")
 ;!+[::CycleFocus("previous")
-!Tab::CycleFocus("next")
+;!Tab::CycleFocus("next")
 
 ; Move windows
 !+h::Move("left")

@@ -17,7 +17,7 @@
 ; My Config
 
 myTerminal := "wt.exe" ; Default terminal
-myBrowser := "brave.exe" ; My default browser
+myBrowser := "arc.exe" ; My default browser
 myEditor := "neovide" ; My default editor
 
 ; Reload AutoHotKey and Komorebi 

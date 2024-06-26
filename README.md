@@ -23,6 +23,7 @@ In these instances, I create an entirely separate branch for managing dotfiles o
 
 - Windows
 - Linux [master]
+- Mac
 
 ## Included Software
 ***
@@ -31,6 +32,7 @@ I maintain specific configurations for the following software:
 - [Alacritty](https://alacritty.org/)
 - [Fish](https://fishshell.com/)
 - [Git](https://git-scm.com/)
+- [iTerm2](https://iterm2colorschemes.com/)
 - [Neovim](https://neovim.io/)
 - [Starship](https://starship.rs/)
 - [Vifm](https://vifm.info/)
@@ -60,6 +62,9 @@ To initialize a **bare** repository, use the `init` command with the `--bare` fl
 git init --bare $HOME/.dotfiles
 ```
 
+> [!info]
+> If you are using Mac or Linux, I recommend setting your dotfile folder as `.config`; however, your entire home folder can be used as your dotfiles, as you may have files in other locations.
+
 The configuration repository can be named whatever you like, but in this example it is called **.dotfiles**.
 
 Next, an **alias** can be created. This alias is used to specifically reference are configuration files.
@@ -67,6 +72,13 @@ Next, an **alias** can be created. This alias is used to specifically reference 
 **Bash**
 ```shell
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+```
+
+If you are installing on Mac using **Fish** or **Zsh** via [Homebrew](https://brew.sh/), you may need to make some alterations to the alias:
+
+**Fish or Zsh**
+```bash
+alias config='/opt/homebrew/bin/git --git-dir=$HOME/.config/ --work-tree=$HOME' 
 ```
 
 Note that **PowerShell** requires slightly different steps, as aliases don't work quite the same. Instead, we need to create an entirely new function and alias to use `config`.
@@ -170,3 +182,38 @@ config checkout -b windows
 Now in our new branch we can remove any files we don't want from **master**. More than likely if you ran `config status` you will see a bunch of files already "deleted." Simply commit these changes, as we won't be tracking them here.
 
 Now we can add any files we won't to track. Once all files have been added, they can be pushed to the new branch.
+
+## Other Settings and Notes
+---
+
+### Font
+To make the most of my config, I recommend installing a [NerdFont](https://www.nerdfonts.com/font-downloads), this will allow icons to appear in certain commands and applications, such as [LSD](https://github.com/lsd-rs/lsd), or [Neovim](https://neovim.io/). I personally use [MesloLG Nerd Font]([MesloLG](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip).
+
+### MacOS Issues and Troubleshooting
+When setting up my configuration on a Mac, you may encounter several permissions issues. I expect that these issues occur when installing certain applications via a package manager. To solve them, you may need to take ownership of both the `.config` and `.local` folders:
+
+```bash
+sudo chown -R <username> ~/.local
+```
+
+```bash
+sudo chown -R <username> ~/.config
+```
+
+Normally since these are already under your user directory, you should have ownership of them.
+
+### Fish: Unknown Command
+When using **Fish** you may encounter the following issue:
+
+```bash
+fish: Unknown command: brew
+```
+
+This occurs when certain commands are installed through a package manager and not in the expected location (Such as **Homebrew** on **Mac**). This can be solved by adding a path to **Fish**:
+
+```bash
+fish_add_path /opt/homebrew/bin
+```
+
+> [!info]
+> To ensure you don't encounter this issue for each session, you will need to add it to your Bash or Fish config.

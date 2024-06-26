@@ -62,7 +62,7 @@ To initialize a **bare** repository, use the `init` command with the `--bare` fl
 git init --bare $HOME/.dotfiles
 ```
 
-> [!info]
+> [!note]
 > If you are using Mac or Linux, I recommend setting your dotfile folder as `.config`; however, your entire home folder can be used as your dotfiles, as you may have files in other locations.
 
 The configuration repository can be named whatever you like, but in this example it is called **.dotfiles**.
@@ -215,5 +215,5 @@ This occurs when certain commands are installed through a package manager and no
 fish_add_path /opt/homebrew/bin
 ```
 
-> [!info]
+> [!note]
 > To ensure you don't encounter this issue for each session, you will need to add it to your Bash or Fish config.

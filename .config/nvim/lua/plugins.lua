@@ -3,62 +3,60 @@
 -- Todo: Use the "doom" theme
 return {
 
-        {   
-            'ellisonleao/gruvbox.nvim',
-            priority = 1000 , 
-            config = true, 
-            opts = ...
-        },
+    {   
+        'ellisonleao/gruvbox.nvim',
+        priority = 1000 , 
+        config = true, 
+        opts = ...
+    },
 
-        {   
-            'nvimdev/dashboard-nvim',
-            event = 'VimEnter',
-            config = function()
-            require('dashboard').setup {
-                
-                -- Doom theme is used for the dashboard.
-                theme = 'hyper',
-                config = {
+    {
+        'nvim-lua/plenary.nvim'
+    },
 
-                    week_header = {
-                        enable = true,
-                    },
+    {   
+        'nvim-telescope/telescope.nvim', 
+        branch = '0.1.x',
+        dependencies = {'nvim-lua/plenary.nvim'}
+    },
 
-                    -- Configuration used for the 'doom' theme.
-                    center = {
-                        {
-                            icon = ' ',
-                            icon_hl = 'Title',
-                            desc = 'Find File',
-                            desc_hl = 'String',
-                            key = 'b',
-                            keymap = 'SPC f f',
-                            key_hl = 'Number',
-                            action = 'lua print(2)',
-                        },
-                    },
+    {
+        'nvim-tree/nvim-web-devicons',
+    },
 
-                    footer = {'[ Something clever goes here ]'},
+    {
+        'nvim-treesitter/nvim-treesitter', 
+    },
 
-                },
+    {
+        "goolord/alpha-nvim",
+        config = function ()
+            local alpha = require'alpha'
+            local dashboard = require'alpha.themes.dashboard'
+            dashboard.section.header.val = {
+                [[--------------------------------------------------------]],
+                [[████   █████████   ░▒▒░▒▓▒███████████   █████████░  ████]],
+                [[███▓▒▓  █████████   ██▒░▒██████▓▓███   █████████   █████]],
+                [[██████   █████████   ████████▓▒▒███   █████████   ██████]],
+                [[███████   █████████   ████████████               ███████]],
+                [[████████   ██▓░▒████   ██████████               ████████]],
+                [[███▒▒▓███   ███▓░▒███   ████████   █████████   █████████]],
+                [[██████████   █████████   █▒░███   █████████   █████░░▒░█]],
+                [[░░█████████   █████████   ████   █████████   ███████████]],
+                [[----------------BUILDING BETTER NOTES-------------------]],
             }
-            end,
-            dependencies = {{'nvim-tree/nvim-web-devicons'}}
-        },
-
-        {
-            'nvim-lua/plenary.nvim'
-        },
-
-        {   
-            'nvim-telescope/telescope.nvim', 
-            branch = '0.1.x',
-            dependencies = {'nvim-lua/plenary.nvim'}
-        },
-        {
-            'nvim-tree/nvim-web-devicons',
-        },
-        {
-            'nvim-treesitter/nvim-treesitter', 
-        },
+            dashboard.section.buttons.val = {
+                dashboard.button( "e", "  New file" , ":ene<CR>"),
+                dashboard.button( "o", "  Search files" , ":Telescope find_files <CR>"),
+                dashboard.button( "q", "󰅚  Quit NVIM" , ":qa<CR>"),
+            }
+            local handle = io.popen('fortune')
+            local fortune = handle:read("*a")
+            handle:close()
+            dashboard.section.footer.val = fortune
+            dashboard.config.opts.noautocmd = true
+            vim.cmd[[autocmd User AlphaReady echo 'ready']]
+            alpha.setup(dashboard.config)
+        end
+    },
 }

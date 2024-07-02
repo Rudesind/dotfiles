@@ -30,10 +30,10 @@ layouts:
   # - widescreen-tall-right
   # - bsp
 
-# My first mod. I prefer "command" for most actions.
+# My first mod. This is considered "hyper." I recommend using the Hyperkey app.
 mod1:
-  # - option
-  # - shift
+  - option
+  - shift
   - control
   - command
 
@@ -51,12 +51,12 @@ mod3:
   # control
   - command
 
-# Junk mod. Used to disable unwanted 
+# Junk mod. Used to disable unwanted shortcuts.
 mod4:
-  - option
+  # - option
   - shift
   - control
-  - commandshortcuts.
+  - command
 
 # Commands:
 # special key values

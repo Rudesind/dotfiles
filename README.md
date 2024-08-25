@@ -68,7 +68,7 @@ Bash or PowerShell:
 git init --bare $HOME/.dotfiles
 ```
 
-> [!note] Mac and Linux Configuration
+> [!note]
 > If you are using **Mac** or **Linux**, I recommend setting your directory as `.config`; however, your entire home folder can be used as your dotfiles as we will change the working tree using an alias. 
 
 The configuration repository can be named whatever you like, but in this example it is called **.dotfiles**.
@@ -104,14 +104,14 @@ config config --local status.showUntrackedFiles no
 
 To reuse this alias, it is recommended that you add it to your `.bashrc`, `profile.ps1`, or `config.fish` file. Simply add one of the above lines depending on your shell to the appropriate configuration file.
 
-> [!info] Migrate to Bare Repository
+> [!info]
 > If you already manage your configuration files using a git repository (I.e. Symlinks), find more information on how to migrate to this method under the **Installing your dotfiles onto a new system (or migrate to this setup)** at the following link:
 > - https://www.atlassian.com/git/tutorials/dotfiles
 
 ### Initializing Existing Repository
 This section describes initializing an existing **bare** repository on a new system.
 
-> [!note] Prerequisites 
+> [!note]
 > Prior to performing any of the below steps, make sure you've added the `config` alias to your `.bashrc`,  `profile.ps1` or `config.fish` file as described in the **Initializing New Repository** section.
 > 
 > Also ensure that your config director is listed in your **.gitignore** to avoid recursion issues.
@@ -123,7 +123,7 @@ Bash or PowerShell:
 git clone --bare <\git-repo-url> $HOME/.dotfiles
 ```
 
->[!note] Issues on Mac
+>[!note]
 > If you already have software installed in the `.config` directory, you may not be able to clone as it isn't empty. I recommend backing up the directory, deleting it, performing the clone, then restore any config files you want to keep that may not be included in my dotfiles.
 
 Next, we checkout the repository. If you use a specific branch for different OS configurations, make sure to checkout the appropriate branch first.

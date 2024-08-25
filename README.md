@@ -69,9 +69,7 @@ git init --bare $HOME/.dotfiles
 ```
 
 > [!note]
-> If you are using **Mac** or **Linux**, I recommend setting your directory as `.config`; however, your entire home folder can be used as your dotfiles as we will change the working tree using an alias. 
-
-The configuration repository can be named whatever you like, but in this example it is called **.dotfiles**.
+> The repo directory name or folder isn't all that important here. You can name it whatever you like. Since we we are setting the working tree to our home directory later, this just stores the repository information. Just make sure to update the `--git-dir` parameter of the alias with your updated name.
 
 Next, an **alias** needs to be created. This alias is used to specifically reference our configuration files and set the working tree to our home directory:
 
@@ -124,7 +122,7 @@ git clone --bare <\git-repo-url> $HOME/.dotfiles
 ```
 
 >[!note]
-> If you already have software installed in the `.config` directory, you may not be able to clone as it isn't empty. I recommend backing up the directory, deleting it, performing the clone, then restore any config files you want to keep that may not be included in my dotfiles.
+> Similar to initializing a new repo, you can name the `.dotfiles` folder referenced here to whatever you like. This folder will only store the repository information, as the working tree is set to our home directory. Just make sure to update your alias.
 
 Next, we checkout the repository. If you use a specific branch for different OS configurations, make sure to checkout the appropriate branch first.
 

@@ -104,7 +104,7 @@ config config --local status.showUntrackedFiles no
 
 To reuse this alias, it is recommended that you add it to your `.bashrc`, `profile.ps1`, or `config.fish` file. Simply add one of the above lines depending on your shell to the appropriate configuration file.
 
-> [!info]
+> [!note]
 > If you already manage your configuration files using a git repository (I.e. Symlinks), find more information on how to migrate to this method under the **Installing your dotfiles onto a new system (or migrate to this setup)** at the following link:
 > - https://www.atlassian.com/git/tutorials/dotfiles
 
@@ -173,7 +173,7 @@ Bash or PowerShell:
 config checkout -b windows
 ```
 
-> [!info]
+> [!note]
 > Because we've initialed this as a new local repository, you will also need to rerun the command to ensure that new local files are untracked:
 >
 > `config config --local status.showUntrackedFiles no`
